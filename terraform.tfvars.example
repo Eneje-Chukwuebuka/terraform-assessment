@@ -1,8 +1,0 @@
-#THE IP ADDRESS I WILL USE TO GAIN ACCES TO BASTION HOST SERVER
-my_ip = "replace with your ip address"
-
-#The passpwrd to the database
-db_password = "replace with authentic password"
-
-#key path
-key_path = "replace with your key path"
