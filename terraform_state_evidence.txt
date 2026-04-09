@@ -1,0 +1,1391 @@
+# data.aws_ami.amazon_linux:
+data "aws_ami" "amazon_linux" {
+    architecture          = "x86_64"
+    arn                   = "arn:aws:ec2:us-east-1::image/ami-0e10497160c48e829"
+    block_device_mappings = [
+        {
+            device_name  = "/dev/xvda"
+            ebs          = {
+                "delete_on_termination"      = "true"
+                "encrypted"                  = "false"
+                "iops"                       = "0"
+                "snapshot_id"                = "snap-06940c9a2828c6435"
+                "throughput"                 = "0"
+                "volume_initialization_rate" = "0"
+                "volume_size"                = "8"
+                "volume_type"                = "gp2"
+            }
+            no_device    = null
+            virtual_name = null
+        },
+    ]
+    boot_mode             = null
+    creation_date         = "2026-04-06T16:30:41.000Z"
+    deprecation_time      = "2026-07-05T16:36:00.000Z"
+    description           = "Amazon Linux 2 AMI 2.0.20260406.1 x86_64 HVM gp2"
+    ena_support           = true
+    hypervisor            = "xen"
+    id                    = "ami-0e10497160c48e829"
+    image_id              = "ami-0e10497160c48e829"
+    image_location        = "amazon/amzn2-ami-hvm-2.0.20260406.1-x86_64-gp2"
+    image_owner_alias     = "amazon"
+    image_type            = "machine"
+    imds_support          = null
+    include_deprecated    = false
+    kernel_id             = null
+    last_launched_time    = null
+    most_recent           = true
+    name                  = "amzn2-ami-hvm-2.0.20260406.1-x86_64-gp2"
+    owner_id              = "137112412989"
+    owners                = [
+        "amazon",
+    ]
+    platform              = null
+    platform_details      = "Linux/UNIX"
+    product_codes         = []
+    public                = true
+    ramdisk_id            = null
+    region                = "us-east-1"
+    root_device_name      = "/dev/xvda"
+    root_device_type      = "ebs"
+    root_snapshot_id      = "snap-06940c9a2828c6435"
+    sriov_net_support     = "simple"
+    state                 = "available"
+    state_reason          = {
+        "code"    = "UNSET"
+        "message" = "UNSET"
+    }
+    tags                  = {}
+    tpm_support           = null
+    usage_operation       = "RunInstances"
+    virtualization_type   = "hvm"
+
+    filter {
+        name   = "name"
+        values = [
+            "amzn2-ami-hvm-*-x86_64-gp2",
+        ]
+    }
+}
+
+# aws_eip.bastion:
+resource "aws_eip" "bastion" {
+    allocation_id            = "eipalloc-018744dce00bf372f"
+    arn                      = "arn:aws:ec2:us-east-1:394747153553:elastic-ip/eipalloc-018744dce00bf372f"
+    association_id           = null
+    carrier_ip               = null
+    customer_owned_ip        = null
+    customer_owned_ipv4_pool = null
+    domain                   = "vpc"
+    id                       = "eipalloc-018744dce00bf372f"
+    instance                 = null
+    network_border_group     = "us-east-1"
+    network_interface        = null
+    private_ip               = null
+    ptr_record               = null
+    public_dns               = "ec2-54-209-2-238.compute-1.amazonaws.com"
+    public_ip                = "54.209.2.238"
+    public_ipv4_pool         = "amazon"
+    region                   = "us-east-1"
+    tags                     = {
+        "Name" = "techcorp-bastion-eip"
+    }
+    tags_all                 = {
+        "Name" = "techcorp-bastion-eip"
+    }
+}
+
+# aws_eip.nat["us-east-1a"]:
+resource "aws_eip" "nat" {
+    allocation_id            = "eipalloc-05a21c6b33097ebff"
+    arn                      = "arn:aws:ec2:us-east-1:394747153553:elastic-ip/eipalloc-05a21c6b33097ebff"
+    association_id           = null
+    carrier_ip               = null
+    customer_owned_ip        = null
+    customer_owned_ipv4_pool = null
+    domain                   = "vpc"
+    id                       = "eipalloc-05a21c6b33097ebff"
+    instance                 = null
+    network_border_group     = "us-east-1"
+    network_interface        = null
+    private_ip               = null
+    ptr_record               = null
+    public_dns               = "ec2-34-192-156-215.compute-1.amazonaws.com"
+    public_ip                = "34.192.156.215"
+    public_ipv4_pool         = "amazon"
+    region                   = "us-east-1"
+    tags                     = {
+        "Name" = "techcorp-nat-eip-us-east-1a"
+    }
+    tags_all                 = {
+        "Name" = "techcorp-nat-eip-us-east-1a"
+    }
+}
+
+# aws_eip.nat["us-east-1b"]:
+resource "aws_eip" "nat" {
+    allocation_id            = "eipalloc-085aca7beb63c31b4"
+    arn                      = "arn:aws:ec2:us-east-1:394747153553:elastic-ip/eipalloc-085aca7beb63c31b4"
+    association_id           = null
+    carrier_ip               = null
+    customer_owned_ip        = null
+    customer_owned_ipv4_pool = null
+    domain                   = "vpc"
+    id                       = "eipalloc-085aca7beb63c31b4"
+    instance                 = null
+    network_border_group     = "us-east-1"
+    network_interface        = null
+    private_ip               = null
+    ptr_record               = null
+    public_dns               = "ec2-3-211-136-186.compute-1.amazonaws.com"
+    public_ip                = "3.211.136.186"
+    public_ipv4_pool         = "amazon"
+    region                   = "us-east-1"
+    tags                     = {
+        "Name" = "techcorp-nat-eip-us-east-1b"
+    }
+    tags_all                 = {
+        "Name" = "techcorp-nat-eip-us-east-1b"
+    }
+}
+
+# aws_eip_association.bastion:
+resource "aws_eip_association" "bastion" {
+    allocation_id        = "eipalloc-018744dce00bf372f"
+    id                   = "eipassoc-01b4ec1cf964afb10"
+    instance_id          = "i-0653814d2a08eb3a9"
+    network_interface_id = "eni-0c979e69576fa1579"
+    private_ip_address   = "10.0.1.13"
+    public_ip            = "54.209.2.238"
+    region               = "us-east-1"
+}
+
+# aws_instance.bastion:
+resource "aws_instance" "bastion" {
+    ami                                  = "ami-0e10497160c48e829"
+    arn                                  = "arn:aws:ec2:us-east-1:394747153553:instance/i-0653814d2a08eb3a9"
+    associate_public_ip_address          = true
+    availability_zone                    = "us-east-1a"
+    disable_api_stop                     = false
+    disable_api_termination              = false
+    ebs_optimized                        = false
+    force_destroy                        = false
+    get_password_data                    = false
+    hibernation                          = false
+    host_id                              = null
+    iam_instance_profile                 = null
+    id                                   = "i-0653814d2a08eb3a9"
+    instance_initiated_shutdown_behavior = "stop"
+    instance_lifecycle                   = null
+    instance_state                       = "running"
+    instance_type                        = "t3.micro"
+    ipv6_address_count                   = 0
+    ipv6_addresses                       = []
+    key_name                             = "techcorp-key"
+    monitoring                           = false
+    outpost_arn                          = null
+    password_data                        = null
+    placement_group                      = null
+    placement_group_id                   = null
+    placement_partition_number           = 0
+    primary_network_interface_id         = "eni-0c979e69576fa1579"
+    private_dns                          = "ip-10-0-1-13.ec2.internal"
+    private_ip                           = "10.0.1.13"
+    public_dns                           = "ec2-44-197-182-39.compute-1.amazonaws.com"
+    public_ip                            = "44.197.182.39"
+    region                               = "us-east-1"
+    secondary_private_ips                = []
+    security_groups                      = []
+    source_dest_check                    = true
+    spot_instance_request_id             = null
+    subnet_id                            = "subnet-0d8fd8fa261648a41"
+    tags                                 = {
+        "Name" = "techcorp-bastion-host"
+    }
+    tags_all                             = {
+        "Name" = "techcorp-bastion-host"
+    }
+    tenancy                              = "default"
+    user_data_replace_on_change          = false
+    vpc_security_group_ids               = [
+        "sg-0be9a93639dce8b57",
+    ]
+
+    capacity_reservation_specification {
+        capacity_reservation_preference = "open"
+    }
+
+    cpu_options {
+        amd_sev_snp           = null
+        core_count            = 1
+        nested_virtualization = null
+        threads_per_core      = 2
+    }
+
+    credit_specification {
+        cpu_credits = "unlimited"
+    }
+
+    enclave_options {
+        enabled = false
+    }
+
+    maintenance_options {
+        auto_recovery = "default"
+    }
+
+    metadata_options {
+        http_endpoint               = "enabled"
+        http_protocol_ipv6          = "disabled"
+        http_put_response_hop_limit = 1
+        http_tokens                 = "optional"
+        instance_metadata_tags      = "disabled"
+    }
+
+    primary_network_interface {
+        delete_on_termination = true
+        network_interface_id  = "eni-0c979e69576fa1579"
+    }
+
+    private_dns_name_options {
+        enable_resource_name_dns_a_record    = false
+        enable_resource_name_dns_aaaa_record = false
+        hostname_type                        = "ip-name"
+    }
+
+    root_block_device {
+        delete_on_termination = true
+        device_name           = "/dev/xvda"
+        encrypted             = false
+        iops                  = 100
+        kms_key_id            = null
+        tags                  = {}
+        tags_all              = {}
+        throughput            = 0
+        volume_id             = "vol-0d238b38c2b22a6a6"
+        volume_size           = 8
+        volume_type           = "gp2"
+    }
+}
+
+# aws_instance.db:
+resource "aws_instance" "db" {
+    ami                                  = "ami-0e10497160c48e829"
+    arn                                  = "arn:aws:ec2:us-east-1:394747153553:instance/i-0b7a77add0ca652d6"
+    associate_public_ip_address          = false
+    availability_zone                    = "us-east-1a"
+    disable_api_stop                     = false
+    disable_api_termination              = false
+    ebs_optimized                        = false
+    force_destroy                        = false
+    get_password_data                    = false
+    hibernation                          = false
+    host_id                              = null
+    iam_instance_profile                 = null
+    id                                   = "i-0b7a77add0ca652d6"
+    instance_initiated_shutdown_behavior = "stop"
+    instance_lifecycle                   = null
+    instance_state                       = "running"
+    instance_type                        = "t3.small"
+    ipv6_address_count                   = 0
+    ipv6_addresses                       = []
+    key_name                             = "techcorp-key"
+    monitoring                           = false
+    outpost_arn                          = null
+    password_data                        = null
+    placement_group                      = null
+    placement_group_id                   = null
+    placement_partition_number           = 0
+    primary_network_interface_id         = "eni-02b0f8ea9b14fe7cd"
+    private_dns                          = "ip-10-0-3-115.ec2.internal"
+    private_ip                           = "10.0.3.115"
+    public_dns                           = null
+    public_ip                            = null
+    region                               = "us-east-1"
+    secondary_private_ips                = []
+    security_groups                      = []
+    source_dest_check                    = true
+    spot_instance_request_id             = null
+    subnet_id                            = "subnet-041fecf54d03d69af"
+    tags                                 = {
+        "Name" = "techcorp-db-server"
+    }
+    tags_all                             = {
+        "Name" = "techcorp-db-server"
+    }
+    tenancy                              = "default"
+    user_data                            = (sensitive value)
+    user_data_replace_on_change          = false
+    vpc_security_group_ids               = [
+        "sg-05697c73eb95f690c",
+    ]
+
+    capacity_reservation_specification {
+        capacity_reservation_preference = "open"
+    }
+
+    cpu_options {
+        amd_sev_snp           = null
+        core_count            = 1
+        nested_virtualization = null
+        threads_per_core      = 2
+    }
+
+    credit_specification {
+        cpu_credits = "unlimited"
+    }
+
+    enclave_options {
+        enabled = false
+    }
+
+    maintenance_options {
+        auto_recovery = "default"
+    }
+
+    metadata_options {
+        http_endpoint               = "enabled"
+        http_protocol_ipv6          = "disabled"
+        http_put_response_hop_limit = 1
+        http_tokens                 = "optional"
+        instance_metadata_tags      = "disabled"
+    }
+
+    primary_network_interface {
+        delete_on_termination = true
+        network_interface_id  = "eni-02b0f8ea9b14fe7cd"
+    }
+
+    private_dns_name_options {
+        enable_resource_name_dns_a_record    = false
+        enable_resource_name_dns_aaaa_record = false
+        hostname_type                        = "ip-name"
+    }
+
+    root_block_device {
+        delete_on_termination = true
+        device_name           = "/dev/xvda"
+        encrypted             = false
+        iops                  = 100
+        kms_key_id            = null
+        tags                  = {}
+        tags_all              = {}
+        throughput            = 0
+        volume_id             = "vol-04fc389cb6fad6733"
+        volume_size           = 8
+        volume_type           = "gp2"
+    }
+}
+
+# aws_instance.web["us-east-1a"]:
+resource "aws_instance" "web" {
+    ami                                  = "ami-0e10497160c48e829"
+    arn                                  = "arn:aws:ec2:us-east-1:394747153553:instance/i-08baf5dce34a0ca84"
+    associate_public_ip_address          = false
+    availability_zone                    = "us-east-1a"
+    disable_api_stop                     = false
+    disable_api_termination              = false
+    ebs_optimized                        = false
+    force_destroy                        = false
+    get_password_data                    = false
+    hibernation                          = false
+    host_id                              = null
+    iam_instance_profile                 = null
+    id                                   = "i-08baf5dce34a0ca84"
+    instance_initiated_shutdown_behavior = "stop"
+    instance_lifecycle                   = null
+    instance_state                       = "running"
+    instance_type                        = "t3.micro"
+    ipv6_address_count                   = 0
+    ipv6_addresses                       = []
+    key_name                             = "techcorp-key"
+    monitoring                           = false
+    outpost_arn                          = null
+    password_data                        = null
+    placement_group                      = null
+    placement_group_id                   = null
+    placement_partition_number           = 0
+    primary_network_interface_id         = "eni-0b6ffa73effdd0615"
+    private_dns                          = "ip-10-0-3-191.ec2.internal"
+    private_ip                           = "10.0.3.191"
+    public_dns                           = null
+    public_ip                            = null
+    region                               = "us-east-1"
+    secondary_private_ips                = []
+    security_groups                      = []
+    source_dest_check                    = true
+    spot_instance_request_id             = null
+    subnet_id                            = "subnet-041fecf54d03d69af"
+    tags                                 = {
+        "Name" = "techcorp-web-us-east-1a"
+    }
+    tags_all                             = {
+        "Name" = "techcorp-web-us-east-1a"
+    }
+    tenancy                              = "default"
+    user_data                            = (sensitive value)
+    user_data_replace_on_change          = false
+    vpc_security_group_ids               = [
+        "sg-02fa9e59c9f8be49a",
+    ]
+
+    capacity_reservation_specification {
+        capacity_reservation_preference = "open"
+    }
+
+    cpu_options {
+        amd_sev_snp           = null
+        core_count            = 1
+        nested_virtualization = null
+        threads_per_core      = 2
+    }
+
+    credit_specification {
+        cpu_credits = "unlimited"
+    }
+
+    enclave_options {
+        enabled = false
+    }
+
+    maintenance_options {
+        auto_recovery = "default"
+    }
+
+    metadata_options {
+        http_endpoint               = "enabled"
+        http_protocol_ipv6          = "disabled"
+        http_put_response_hop_limit = 1
+        http_tokens                 = "optional"
+        instance_metadata_tags      = "disabled"
+    }
+
+    primary_network_interface {
+        delete_on_termination = true
+        network_interface_id  = "eni-0b6ffa73effdd0615"
+    }
+
+    private_dns_name_options {
+        enable_resource_name_dns_a_record    = false
+        enable_resource_name_dns_aaaa_record = false
+        hostname_type                        = "ip-name"
+    }
+
+    root_block_device {
+        delete_on_termination = true
+        device_name           = "/dev/xvda"
+        encrypted             = false
+        iops                  = 100
+        kms_key_id            = null
+        tags                  = {}
+        tags_all              = {}
+        throughput            = 0
+        volume_id             = "vol-0c263d74aaa11c876"
+        volume_size           = 8
+        volume_type           = "gp2"
+    }
+}
+
+# aws_instance.web["us-east-1b"]:
+resource "aws_instance" "web" {
+    ami                                  = "ami-0e10497160c48e829"
+    arn                                  = "arn:aws:ec2:us-east-1:394747153553:instance/i-026ed6ceee5bb155a"
+    associate_public_ip_address          = false
+    availability_zone                    = "us-east-1b"
+    disable_api_stop                     = false
+    disable_api_termination              = false
+    ebs_optimized                        = false
+    force_destroy                        = false
+    get_password_data                    = false
+    hibernation                          = false
+    host_id                              = null
+    iam_instance_profile                 = null
+    id                                   = "i-026ed6ceee5bb155a"
+    instance_initiated_shutdown_behavior = "stop"
+    instance_lifecycle                   = null
+    instance_state                       = "running"
+    instance_type                        = "t3.micro"
+    ipv6_address_count                   = 0
+    ipv6_addresses                       = []
+    key_name                             = "techcorp-key"
+    monitoring                           = false
+    outpost_arn                          = null
+    password_data                        = null
+    placement_group                      = null
+    placement_group_id                   = null
+    placement_partition_number           = 0
+    primary_network_interface_id         = "eni-0b009f6c93d7a2c86"
+    private_dns                          = "ip-10-0-4-216.ec2.internal"
+    private_ip                           = "10.0.4.216"
+    public_dns                           = null
+    public_ip                            = null
+    region                               = "us-east-1"
+    secondary_private_ips                = []
+    security_groups                      = []
+    source_dest_check                    = true
+    spot_instance_request_id             = null
+    subnet_id                            = "subnet-095ca8874168e5f4b"
+    tags                                 = {
+        "Name" = "techcorp-web-us-east-1b"
+    }
+    tags_all                             = {
+        "Name" = "techcorp-web-us-east-1b"
+    }
+    tenancy                              = "default"
+    user_data                            = (sensitive value)
+    user_data_replace_on_change          = false
+    vpc_security_group_ids               = [
+        "sg-02fa9e59c9f8be49a",
+    ]
+
+    capacity_reservation_specification {
+        capacity_reservation_preference = "open"
+    }
+
+    cpu_options {
+        amd_sev_snp           = null
+        core_count            = 1
+        nested_virtualization = null
+        threads_per_core      = 2
+    }
+
+    credit_specification {
+        cpu_credits = "unlimited"
+    }
+
+    enclave_options {
+        enabled = false
+    }
+
+    maintenance_options {
+        auto_recovery = "default"
+    }
+
+    metadata_options {
+        http_endpoint               = "enabled"
+        http_protocol_ipv6          = "disabled"
+        http_put_response_hop_limit = 1
+        http_tokens                 = "optional"
+        instance_metadata_tags      = "disabled"
+    }
+
+    primary_network_interface {
+        delete_on_termination = true
+        network_interface_id  = "eni-0b009f6c93d7a2c86"
+    }
+
+    private_dns_name_options {
+        enable_resource_name_dns_a_record    = false
+        enable_resource_name_dns_aaaa_record = false
+        hostname_type                        = "ip-name"
+    }
+
+    root_block_device {
+        delete_on_termination = true
+        device_name           = "/dev/xvda"
+        encrypted             = false
+        iops                  = 100
+        kms_key_id            = null
+        tags                  = {}
+        tags_all              = {}
+        throughput            = 0
+        volume_id             = "vol-0087f07108fecb70e"
+        volume_size           = 8
+        volume_type           = "gp2"
+    }
+}
+
+# aws_internet_gateway.this:
+resource "aws_internet_gateway" "this" {
+    arn      = "arn:aws:ec2:us-east-1:394747153553:internet-gateway/igw-0e5683ba183182dd3"
+    id       = "igw-0e5683ba183182dd3"
+    owner_id = "394747153553"
+    region   = "us-east-1"
+    tags     = {
+        "Name" = "techcorp-igw"
+    }
+    tags_all = {
+        "Name" = "techcorp-igw"
+    }
+    vpc_id   = "vpc-046ef0a51619842f8"
+}
+
+# aws_lb.this:
+resource "aws_lb" "this" {
+    arn                                                          = "arn:aws:elasticloadbalancing:us-east-1:394747153553:loadbalancer/app/techcorp-alb/ef22f278844d25e2"
+    arn_suffix                                                   = "app/techcorp-alb/ef22f278844d25e2"
+    client_keep_alive                                            = 3600
+    customer_owned_ipv4_pool                                     = null
+    desync_mitigation_mode                                       = "defensive"
+    dns_name                                                     = "techcorp-alb-839992738.us-east-1.elb.amazonaws.com"
+    drop_invalid_header_fields                                   = false
+    enable_cross_zone_load_balancing                             = true
+    enable_deletion_protection                                   = false
+    enable_http2                                                 = true
+    enable_tls_version_and_cipher_suite_headers                  = false
+    enable_waf_fail_open                                         = false
+    enable_xff_client_port                                       = false
+    enable_zonal_shift                                           = false
+    enforce_security_group_inbound_rules_on_private_link_traffic = null
+    id                                                           = "arn:aws:elasticloadbalancing:us-east-1:394747153553:loadbalancer/app/techcorp-alb/ef22f278844d25e2"
+    idle_timeout                                                 = 60
+    internal                                                     = false
+    ip_address_type                                              = "ipv4"
+    load_balancer_type                                           = "application"
+    name                                                         = "techcorp-alb"
+    name_prefix                                                  = null
+    preserve_host_header                                         = false
+    region                                                       = "us-east-1"
+    security_groups                                              = [
+        "sg-00e1a437534bf39d4",
+    ]
+    subnets                                                      = [
+        "subnet-01c6e679d9de139d7",
+        "subnet-0d8fd8fa261648a41",
+    ]
+    tags                                                         = {
+        "Name" = "techcorp-alb"
+    }
+    tags_all                                                     = {
+        "Name" = "techcorp-alb"
+    }
+    vpc_id                                                       = "vpc-046ef0a51619842f8"
+    xff_header_processing_mode                                   = "append"
+    zone_id                                                      = "Z35SXDOTRQ7X7K"
+
+    access_logs {
+        bucket  = null
+        enabled = false
+        prefix  = null
+    }
+
+    connection_logs {
+        bucket  = null
+        enabled = false
+        prefix  = null
+    }
+
+    health_check_logs {
+        bucket  = null
+        enabled = false
+        prefix  = null
+    }
+
+    subnet_mapping {
+        allocation_id        = null
+        ipv6_address         = null
+        outpost_id           = null
+        private_ipv4_address = null
+        subnet_id            = "subnet-01c6e679d9de139d7"
+    }
+    subnet_mapping {
+        allocation_id        = null
+        ipv6_address         = null
+        outpost_id           = null
+        private_ipv4_address = null
+        subnet_id            = "subnet-0d8fd8fa261648a41"
+    }
+}
+
+# aws_lb_listener.http:
+resource "aws_lb_listener" "http" {
+    arn                                                                 = "arn:aws:elasticloadbalancing:us-east-1:394747153553:listener/app/techcorp-alb/ef22f278844d25e2/5f2c8f5d9bd5ea70"
+    id                                                                  = "arn:aws:elasticloadbalancing:us-east-1:394747153553:listener/app/techcorp-alb/ef22f278844d25e2/5f2c8f5d9bd5ea70"
+    load_balancer_arn                                                   = "arn:aws:elasticloadbalancing:us-east-1:394747153553:loadbalancer/app/techcorp-alb/ef22f278844d25e2"
+    port                                                                = 80
+    protocol                                                            = "HTTP"
+    region                                                              = "us-east-1"
+    routing_http_response_access_control_allow_credentials_header_value = null
+    routing_http_response_access_control_allow_headers_header_value     = null
+    routing_http_response_access_control_allow_methods_header_value     = null
+    routing_http_response_access_control_allow_origin_header_value      = null
+    routing_http_response_access_control_expose_headers_header_value    = null
+    routing_http_response_access_control_max_age_header_value           = null
+    routing_http_response_content_security_policy_header_value          = null
+    routing_http_response_server_enabled                                = true
+    routing_http_response_strict_transport_security_header_value        = null
+    routing_http_response_x_content_type_options_header_value           = null
+    routing_http_response_x_frame_options_header_value                  = null
+    ssl_policy                                                          = null
+    tags                                                                = {
+        "Name" = "techcorp-web-listener-80"
+    }
+    tags_all                                                            = {
+        "Name" = "techcorp-web-listener-80"
+    }
+
+    default_action {
+        order            = 1
+        target_group_arn = "arn:aws:elasticloadbalancing:us-east-1:394747153553:targetgroup/techcorp-web-tg/34b791ec84adc139"
+        type             = "forward"
+    }
+}
+
+# aws_lb_target_group.web:
+resource "aws_lb_target_group" "web" {
+    arn                                = "arn:aws:elasticloadbalancing:us-east-1:394747153553:targetgroup/techcorp-web-tg/34b791ec84adc139"
+    arn_suffix                         = "targetgroup/techcorp-web-tg/34b791ec84adc139"
+    deregistration_delay               = "300"
+    id                                 = "arn:aws:elasticloadbalancing:us-east-1:394747153553:targetgroup/techcorp-web-tg/34b791ec84adc139"
+    ip_address_type                    = "ipv4"
+    lambda_multi_value_headers_enabled = false
+    load_balancer_arns                 = []
+    load_balancing_algorithm_type      = "round_robin"
+    load_balancing_anomaly_mitigation  = "off"
+    load_balancing_cross_zone_enabled  = "use_load_balancer_configuration"
+    name                               = "techcorp-web-tg"
+    name_prefix                        = null
+    port                               = 80
+    protocol                           = "HTTP"
+    protocol_version                   = "HTTP1"
+    proxy_protocol_v2                  = false
+    region                             = "us-east-1"
+    slow_start                         = 0
+    tags                               = {
+        "Name" = "techcorp-web-tg"
+    }
+    tags_all                           = {
+        "Name" = "techcorp-web-tg"
+    }
+    target_control_port                = 0
+    target_type                        = "instance"
+    vpc_id                             = "vpc-046ef0a51619842f8"
+
+    health_check {
+        enabled             = true
+        healthy_threshold   = 3
+        interval            = 30
+        matcher             = "200"
+        path                = "/"
+        port                = "traffic-port"
+        protocol            = "HTTP"
+        timeout             = 5
+        unhealthy_threshold = 3
+    }
+
+    stickiness {
+        cookie_duration = 86400
+        cookie_name     = null
+        enabled         = false
+        type            = "lb_cookie"
+    }
+
+    target_failover {}
+
+    target_group_health {
+        dns_failover {
+            minimum_healthy_targets_count      = "1"
+            minimum_healthy_targets_percentage = "off"
+        }
+        unhealthy_state_routing {
+            minimum_healthy_targets_count      = 1
+            minimum_healthy_targets_percentage = "off"
+        }
+    }
+
+    target_health_state {}
+}
+
+# aws_lb_target_group_attachment.http["us-east-1a"]:
+resource "aws_lb_target_group_attachment" "http" {
+    id               = "arn:aws:elasticloadbalancing:us-east-1:394747153553:targetgroup/techcorp-web-tg/34b791ec84adc139,i-08baf5dce34a0ca84,80"
+    port             = 80
+    region           = "us-east-1"
+    target_group_arn = "arn:aws:elasticloadbalancing:us-east-1:394747153553:targetgroup/techcorp-web-tg/34b791ec84adc139"
+    target_id        = "i-08baf5dce34a0ca84"
+}
+
+# aws_lb_target_group_attachment.http["us-east-1b"]:
+resource "aws_lb_target_group_attachment" "http" {
+    id               = "arn:aws:elasticloadbalancing:us-east-1:394747153553:targetgroup/techcorp-web-tg/34b791ec84adc139,i-026ed6ceee5bb155a,80"
+    port             = 80
+    region           = "us-east-1"
+    target_group_arn = "arn:aws:elasticloadbalancing:us-east-1:394747153553:targetgroup/techcorp-web-tg/34b791ec84adc139"
+    target_id        = "i-026ed6ceee5bb155a"
+}
+
+# aws_nat_gateway.this["us-east-1a"]:
+resource "aws_nat_gateway" "this" {
+    allocation_id                      = "eipalloc-05a21c6b33097ebff"
+    association_id                     = "eipassoc-084de86db873e45a6"
+    availability_mode                  = "zonal"
+    connectivity_type                  = "public"
+    id                                 = "nat-09310d6bb8369243b"
+    network_interface_id               = "eni-08e37b04a14a3e35f"
+    private_ip                         = "10.0.1.54"
+    public_ip                          = "34.192.156.215"
+    region                             = "us-east-1"
+    regional_nat_gateway_address       = []
+    secondary_allocation_ids           = []
+    secondary_private_ip_address_count = 0
+    secondary_private_ip_addresses     = []
+    subnet_id                          = "subnet-0d8fd8fa261648a41"
+    tags                               = {
+        "Name" = "techcorp-nat-gateway-us-east-1a"
+    }
+    tags_all                           = {
+        "Name" = "techcorp-nat-gateway-us-east-1a"
+    }
+    vpc_id                             = "vpc-046ef0a51619842f8"
+}
+
+# aws_nat_gateway.this["us-east-1b"]:
+resource "aws_nat_gateway" "this" {
+    allocation_id                      = "eipalloc-085aca7beb63c31b4"
+    association_id                     = "eipassoc-0b5e1dd8c032af3df"
+    availability_mode                  = "zonal"
+    connectivity_type                  = "public"
+    id                                 = "nat-0609df98e600748d6"
+    network_interface_id               = "eni-0e5d1be3bbb5f77ae"
+    private_ip                         = "10.0.2.231"
+    public_ip                          = "3.211.136.186"
+    region                             = "us-east-1"
+    regional_nat_gateway_address       = []
+    secondary_allocation_ids           = []
+    secondary_private_ip_address_count = 0
+    secondary_private_ip_addresses     = []
+    subnet_id                          = "subnet-01c6e679d9de139d7"
+    tags                               = {
+        "Name" = "techcorp-nat-gateway-us-east-1b"
+    }
+    tags_all                           = {
+        "Name" = "techcorp-nat-gateway-us-east-1b"
+    }
+    vpc_id                             = "vpc-046ef0a51619842f8"
+}
+
+# aws_route_table.private["us-east-1a"]:
+resource "aws_route_table" "private" {
+    arn              = "arn:aws:ec2:us-east-1:394747153553:route-table/rtb-012fc92481bc6d50a"
+    id               = "rtb-012fc92481bc6d50a"
+    owner_id         = "394747153553"
+    propagating_vgws = []
+    region           = "us-east-1"
+    route            = [
+        {
+            carrier_gateway_id         = null
+            cidr_block                 = "0.0.0.0/0"
+            core_network_arn           = null
+            destination_prefix_list_id = null
+            egress_only_gateway_id     = null
+            gateway_id                 = null
+            ipv6_cidr_block            = null
+            local_gateway_id           = null
+            nat_gateway_id             = "nat-09310d6bb8369243b"
+            network_interface_id       = null
+            transit_gateway_id         = null
+            vpc_endpoint_id            = null
+            vpc_peering_connection_id  = null
+        },
+    ]
+    tags             = {
+        "Name" = "techcorp-private-route-table-us-east-1a"
+    }
+    tags_all         = {
+        "Name" = "techcorp-private-route-table-us-east-1a"
+    }
+    vpc_id           = "vpc-046ef0a51619842f8"
+}
+
+# aws_route_table.private["us-east-1b"]:
+resource "aws_route_table" "private" {
+    arn              = "arn:aws:ec2:us-east-1:394747153553:route-table/rtb-047d6110346d389f7"
+    id               = "rtb-047d6110346d389f7"
+    owner_id         = "394747153553"
+    propagating_vgws = []
+    region           = "us-east-1"
+    route            = [
+        {
+            carrier_gateway_id         = null
+            cidr_block                 = "0.0.0.0/0"
+            core_network_arn           = null
+            destination_prefix_list_id = null
+            egress_only_gateway_id     = null
+            gateway_id                 = null
+            ipv6_cidr_block            = null
+            local_gateway_id           = null
+            nat_gateway_id             = "nat-0609df98e600748d6"
+            network_interface_id       = null
+            transit_gateway_id         = null
+            vpc_endpoint_id            = null
+            vpc_peering_connection_id  = null
+        },
+    ]
+    tags             = {
+        "Name" = "techcorp-private-route-table-us-east-1b"
+    }
+    tags_all         = {
+        "Name" = "techcorp-private-route-table-us-east-1b"
+    }
+    vpc_id           = "vpc-046ef0a51619842f8"
+}
+
+# aws_route_table.public:
+resource "aws_route_table" "public" {
+    arn              = "arn:aws:ec2:us-east-1:394747153553:route-table/rtb-0fc0d65345f7d19cc"
+    id               = "rtb-0fc0d65345f7d19cc"
+    owner_id         = "394747153553"
+    propagating_vgws = []
+    region           = "us-east-1"
+    route            = [
+        {
+            carrier_gateway_id         = null
+            cidr_block                 = "0.0.0.0/0"
+            core_network_arn           = null
+            destination_prefix_list_id = null
+            egress_only_gateway_id     = null
+            gateway_id                 = "igw-0e5683ba183182dd3"
+            ipv6_cidr_block            = null
+            local_gateway_id           = null
+            nat_gateway_id             = null
+            network_interface_id       = null
+            transit_gateway_id         = null
+            vpc_endpoint_id            = null
+            vpc_peering_connection_id  = null
+        },
+    ]
+    tags             = {
+        "Name" = "techcorp-public-route-table"
+    }
+    tags_all         = {
+        "Name" = "techcorp-public-route-table"
+    }
+    vpc_id           = "vpc-046ef0a51619842f8"
+}
+
+# aws_route_table_association.private["us-east-1a"]:
+resource "aws_route_table_association" "private" {
+    gateway_id     = null
+    id             = "rtbassoc-09c98c507c42744be"
+    region         = "us-east-1"
+    route_table_id = "rtb-012fc92481bc6d50a"
+    subnet_id      = "subnet-041fecf54d03d69af"
+}
+
+# aws_route_table_association.private["us-east-1b"]:
+resource "aws_route_table_association" "private" {
+    gateway_id     = null
+    id             = "rtbassoc-0f26e104f714ec4d9"
+    region         = "us-east-1"
+    route_table_id = "rtb-047d6110346d389f7"
+    subnet_id      = "subnet-095ca8874168e5f4b"
+}
+
+# aws_route_table_association.public["us-east-1a"]:
+resource "aws_route_table_association" "public" {
+    gateway_id     = null
+    id             = "rtbassoc-068564f4791985a8a"
+    region         = "us-east-1"
+    route_table_id = "rtb-0fc0d65345f7d19cc"
+    subnet_id      = "subnet-0d8fd8fa261648a41"
+}
+
+# aws_route_table_association.public["us-east-1b"]:
+resource "aws_route_table_association" "public" {
+    gateway_id     = null
+    id             = "rtbassoc-06bb748291f60fb6d"
+    region         = "us-east-1"
+    route_table_id = "rtb-0fc0d65345f7d19cc"
+    subnet_id      = "subnet-01c6e679d9de139d7"
+}
+
+# aws_security_group.bastion_sg:
+resource "aws_security_group" "bastion_sg" {
+    arn                    = "arn:aws:ec2:us-east-1:394747153553:security-group/sg-0be9a93639dce8b57"
+    description            = "Allow SSH access to bastion host"
+    egress                 = [
+        {
+            cidr_blocks      = [
+                "0.0.0.0/0",
+            ]
+            description      = null
+            from_port        = 0
+            ipv6_cidr_blocks = []
+            prefix_list_ids  = []
+            protocol         = "-1"
+            security_groups  = []
+            self             = false
+            to_port          = 0
+        },
+    ]
+    id                     = "sg-0be9a93639dce8b57"
+    ingress                = [
+        {
+            cidr_blocks      = [
+                "105.112.176.42/32",
+            ]
+            description      = null
+            from_port        = 22
+            ipv6_cidr_blocks = []
+            prefix_list_ids  = []
+            protocol         = "tcp"
+            security_groups  = []
+            self             = false
+            to_port          = 22
+        },
+    ]
+    name                   = "techcorp-bastion-sg"
+    name_prefix            = null
+    owner_id               = "394747153553"
+    region                 = "us-east-1"
+    revoke_rules_on_delete = false
+    tags                   = {
+        "Name" = "techcorp-bastion-sg"
+    }
+    tags_all               = {
+        "Name" = "techcorp-bastion-sg"
+    }
+    vpc_id                 = "vpc-046ef0a51619842f8"
+}
+
+# aws_security_group.db_sg:
+resource "aws_security_group" "db_sg" {
+    arn                    = "arn:aws:ec2:us-east-1:394747153553:security-group/sg-05697c73eb95f690c"
+    description            = "Allow PostgreSQL access to database server"
+    egress                 = [
+        {
+            cidr_blocks      = [
+                "0.0.0.0/0",
+            ]
+            description      = null
+            from_port        = 0
+            ipv6_cidr_blocks = []
+            prefix_list_ids  = []
+            protocol         = "-1"
+            security_groups  = []
+            self             = false
+            to_port          = 0
+        },
+    ]
+    id                     = "sg-05697c73eb95f690c"
+    ingress                = [
+        {
+            cidr_blocks      = []
+            description      = null
+            from_port        = 22
+            ipv6_cidr_blocks = []
+            prefix_list_ids  = []
+            protocol         = "tcp"
+            security_groups  = [
+                "sg-0be9a93639dce8b57",
+            ]
+            self             = false
+            to_port          = 22
+        },
+        {
+            cidr_blocks      = []
+            description      = null
+            from_port        = 5432
+            ipv6_cidr_blocks = []
+            prefix_list_ids  = []
+            protocol         = "tcp"
+            security_groups  = [
+                "sg-02fa9e59c9f8be49a",
+            ]
+            self             = false
+            to_port          = 5432
+        },
+    ]
+    name                   = "techcorp-db-sg"
+    name_prefix            = null
+    owner_id               = "394747153553"
+    region                 = "us-east-1"
+    revoke_rules_on_delete = false
+    tags                   = {
+        "Name" = "techcorp-db-sg"
+    }
+    tags_all               = {
+        "Name" = "techcorp-db-sg"
+    }
+    vpc_id                 = "vpc-046ef0a51619842f8"
+}
+
+# aws_security_group.lb:
+resource "aws_security_group" "lb" {
+    arn                    = "arn:aws:ec2:us-east-1:394747153553:security-group/sg-00e1a437534bf39d4"
+    description            = "the security group for the application load balancer"
+    egress                 = [
+        {
+            cidr_blocks      = [
+                "0.0.0.0/0",
+            ]
+            description      = null
+            from_port        = 0
+            ipv6_cidr_blocks = []
+            prefix_list_ids  = []
+            protocol         = "-1"
+            security_groups  = []
+            self             = false
+            to_port          = 0
+        },
+    ]
+    id                     = "sg-00e1a437534bf39d4"
+    ingress                = [
+        {
+            cidr_blocks      = [
+                "0.0.0.0/0",
+            ]
+            description      = null
+            from_port        = 80
+            ipv6_cidr_blocks = []
+            prefix_list_ids  = []
+            protocol         = "tcp"
+            security_groups  = []
+            self             = false
+            to_port          = 80
+        },
+    ]
+    name                   = "techcorp-lb-sg"
+    name_prefix            = null
+    owner_id               = "394747153553"
+    region                 = "us-east-1"
+    revoke_rules_on_delete = false
+    tags                   = {
+        "Name" = "techcorp-alb-sg"
+    }
+    tags_all               = {
+        "Name" = "techcorp-alb-sg"
+    }
+    vpc_id                 = "vpc-046ef0a51619842f8"
+}
+
+# aws_security_group.web_sg:
+resource "aws_security_group" "web_sg" {
+    arn                    = "arn:aws:ec2:us-east-1:394747153553:security-group/sg-02fa9e59c9f8be49a"
+    description            = "Allow HTTP/HTTPS access to web servers"
+    egress                 = [
+        {
+            cidr_blocks      = [
+                "0.0.0.0/0",
+            ]
+            description      = null
+            from_port        = 0
+            ipv6_cidr_blocks = []
+            prefix_list_ids  = []
+            protocol         = "-1"
+            security_groups  = []
+            self             = false
+            to_port          = 0
+        },
+    ]
+    id                     = "sg-02fa9e59c9f8be49a"
+    ingress                = [
+        {
+            cidr_blocks      = []
+            description      = null
+            from_port        = 22
+            ipv6_cidr_blocks = []
+            prefix_list_ids  = []
+            protocol         = "tcp"
+            security_groups  = [
+                "sg-0be9a93639dce8b57",
+            ]
+            self             = false
+            to_port          = 22
+        },
+        {
+            cidr_blocks      = []
+            description      = null
+            from_port        = 443
+            ipv6_cidr_blocks = []
+            prefix_list_ids  = []
+            protocol         = "tcp"
+            security_groups  = [
+                "sg-00e1a437534bf39d4",
+            ]
+            self             = false
+            to_port          = 443
+        },
+        {
+            cidr_blocks      = []
+            description      = null
+            from_port        = 80
+            ipv6_cidr_blocks = []
+            prefix_list_ids  = []
+            protocol         = "tcp"
+            security_groups  = [
+                "sg-00e1a437534bf39d4",
+            ]
+            self             = false
+            to_port          = 80
+        },
+    ]
+    name                   = "techcorp-web-sg"
+    name_prefix            = null
+    owner_id               = "394747153553"
+    region                 = "us-east-1"
+    revoke_rules_on_delete = false
+    tags                   = {
+        "Name" = "techcorp-web-sg"
+    }
+    tags_all               = {
+        "Name" = "techcorp-web-sg"
+    }
+    vpc_id                 = "vpc-046ef0a51619842f8"
+}
+
+# aws_subnet.private["us-east-1a"]:
+resource "aws_subnet" "private" {
+    arn                                            = "arn:aws:ec2:us-east-1:394747153553:subnet/subnet-041fecf54d03d69af"
+    assign_ipv6_address_on_creation                = false
+    availability_zone                              = "us-east-1a"
+    availability_zone_id                           = "use1-az1"
+    cidr_block                                     = "10.0.3.0/24"
+    customer_owned_ipv4_pool                       = null
+    enable_dns64                                   = false
+    enable_lni_at_device_index                     = 0
+    enable_resource_name_dns_a_record_on_launch    = false
+    enable_resource_name_dns_aaaa_record_on_launch = false
+    id                                             = "subnet-041fecf54d03d69af"
+    ipv6_cidr_block                                = null
+    ipv6_cidr_block_association_id                 = null
+    ipv6_native                                    = false
+    map_customer_owned_ip_on_launch                = false
+    map_public_ip_on_launch                        = false
+    outpost_arn                                    = null
+    owner_id                                       = "394747153553"
+    private_dns_hostname_type_on_launch            = "ip-name"
+    region                                         = "us-east-1"
+    tags                                           = {
+        "Name" = "techcorp-private-subnet-us-east-1a"
+    }
+    tags_all                                       = {
+        "Name" = "techcorp-private-subnet-us-east-1a"
+    }
+    vpc_id                                         = "vpc-046ef0a51619842f8"
+}
+
+# aws_subnet.private["us-east-1b"]:
+resource "aws_subnet" "private" {
+    arn                                            = "arn:aws:ec2:us-east-1:394747153553:subnet/subnet-095ca8874168e5f4b"
+    assign_ipv6_address_on_creation                = false
+    availability_zone                              = "us-east-1b"
+    availability_zone_id                           = "use1-az2"
+    cidr_block                                     = "10.0.4.0/24"
+    customer_owned_ipv4_pool                       = null
+    enable_dns64                                   = false
+    enable_lni_at_device_index                     = 0
+    enable_resource_name_dns_a_record_on_launch    = false
+    enable_resource_name_dns_aaaa_record_on_launch = false
+    id                                             = "subnet-095ca8874168e5f4b"
+    ipv6_cidr_block                                = null
+    ipv6_cidr_block_association_id                 = null
+    ipv6_native                                    = false
+    map_customer_owned_ip_on_launch                = false
+    map_public_ip_on_launch                        = false
+    outpost_arn                                    = null
+    owner_id                                       = "394747153553"
+    private_dns_hostname_type_on_launch            = "ip-name"
+    region                                         = "us-east-1"
+    tags                                           = {
+        "Name" = "techcorp-private-subnet-us-east-1b"
+    }
+    tags_all                                       = {
+        "Name" = "techcorp-private-subnet-us-east-1b"
+    }
+    vpc_id                                         = "vpc-046ef0a51619842f8"
+}
+
+# aws_subnet.public["us-east-1a"]:
+resource "aws_subnet" "public" {
+    arn                                            = "arn:aws:ec2:us-east-1:394747153553:subnet/subnet-0d8fd8fa261648a41"
+    assign_ipv6_address_on_creation                = false
+    availability_zone                              = "us-east-1a"
+    availability_zone_id                           = "use1-az1"
+    cidr_block                                     = "10.0.1.0/24"
+    customer_owned_ipv4_pool                       = null
+    enable_dns64                                   = false
+    enable_lni_at_device_index                     = 0
+    enable_resource_name_dns_a_record_on_launch    = false
+    enable_resource_name_dns_aaaa_record_on_launch = false
+    id                                             = "subnet-0d8fd8fa261648a41"
+    ipv6_cidr_block                                = null
+    ipv6_cidr_block_association_id                 = null
+    ipv6_native                                    = false
+    map_customer_owned_ip_on_launch                = false
+    map_public_ip_on_launch                        = true
+    outpost_arn                                    = null
+    owner_id                                       = "394747153553"
+    private_dns_hostname_type_on_launch            = "ip-name"
+    region                                         = "us-east-1"
+    tags                                           = {
+        "Name" = "techcorp-public-subnet-us-east-1a"
+    }
+    tags_all                                       = {
+        "Name" = "techcorp-public-subnet-us-east-1a"
+    }
+    vpc_id                                         = "vpc-046ef0a51619842f8"
+}
+
+# aws_subnet.public["us-east-1b"]:
+resource "aws_subnet" "public" {
+    arn                                            = "arn:aws:ec2:us-east-1:394747153553:subnet/subnet-01c6e679d9de139d7"
+    assign_ipv6_address_on_creation                = false
+    availability_zone                              = "us-east-1b"
+    availability_zone_id                           = "use1-az2"
+    cidr_block                                     = "10.0.2.0/24"
+    customer_owned_ipv4_pool                       = null
+    enable_dns64                                   = false
+    enable_lni_at_device_index                     = 0
+    enable_resource_name_dns_a_record_on_launch    = false
+    enable_resource_name_dns_aaaa_record_on_launch = false
+    id                                             = "subnet-01c6e679d9de139d7"
+    ipv6_cidr_block                                = null
+    ipv6_cidr_block_association_id                 = null
+    ipv6_native                                    = false
+    map_customer_owned_ip_on_launch                = false
+    map_public_ip_on_launch                        = true
+    outpost_arn                                    = null
+    owner_id                                       = "394747153553"
+    private_dns_hostname_type_on_launch            = "ip-name"
+    region                                         = "us-east-1"
+    tags                                           = {
+        "Name" = "techcorp-public-subnet-us-east-1b"
+    }
+    tags_all                                       = {
+        "Name" = "techcorp-public-subnet-us-east-1b"
+    }
+    vpc_id                                         = "vpc-046ef0a51619842f8"
+}
+
+# aws_vpc.this:
+resource "aws_vpc" "this" {
+    arn                                  = "arn:aws:ec2:us-east-1:394747153553:vpc/vpc-046ef0a51619842f8"
+    assign_generated_ipv6_cidr_block     = false
+    cidr_block                           = "10.0.0.0/16"
+    default_network_acl_id               = "acl-0ae3eecf73578925c"
+    default_route_table_id               = "rtb-08d8664f97db7d7d7"
+    default_security_group_id            = "sg-008bc3790daf4f555"
+    dhcp_options_id                      = "dopt-06ac7367103726f97"
+    enable_dns_hostnames                 = true
+    enable_dns_support                   = true
+    enable_network_address_usage_metrics = false
+    id                                   = "vpc-046ef0a51619842f8"
+    instance_tenancy                     = "default"
+    ipv6_association_id                  = null
+    ipv6_cidr_block                      = null
+    ipv6_cidr_block_network_border_group = null
+    ipv6_ipam_pool_id                    = null
+    ipv6_netmask_length                  = 0
+    main_route_table_id                  = "rtb-08d8664f97db7d7d7"
+    owner_id                             = "394747153553"
+    region                               = "us-east-1"
+    tags                                 = {
+        "Name" = "techcorp-vpc"
+    }
+    tags_all                             = {
+        "Name" = "techcorp-vpc"
+    }
+}
+
+
+Outputs:
+
+bastion_host_ip = "54.209.2.238"
+db_server_ip = "10.0.3.115"
+lb_dns = "techcorp-alb-839992738.us-east-1.elb.amazonaws.com"
+vpc_id = "vpc-046ef0a51619842f8"
+web_server_ip = [
+    "10.0.3.191",
+    "10.0.4.216",
+]
