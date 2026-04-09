@@ -1,0 +1,9 @@
+terraform_plan.png (Terminal output of the plan)
+
+terraform_apply.png (Terminal output showing "Apply complete!")
+
+aws_resources.png (AWS Console showing all EC2 instances running)
+
+app_working.png (Browser showing the app live via the ALB link)
+
+terraform_destroy.png (Terminal output showing resources deleted)
